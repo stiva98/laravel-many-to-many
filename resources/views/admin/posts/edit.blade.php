@@ -61,6 +61,35 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="mb-3">
+                    <label class="form-label d-block">Tecnologie</label>
+                    @foreach ($technologies as $technology)
+                        <div class="form-check form-check-inline">
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                name="technologies[]"
+                                id="technology-{{ $technology->id }}"
+                                value="{{ $technology->id }}"
+                                @if ($errors -> any())
+                                    @if (
+                                        in_array(
+                                            $technology->id,
+                                            old('technologies', [])
+                                        )
+                                    )
+                                        checked
+                                    @endif
+                                @elseif ($post->technologies->contains($technology))
+                                checked
+                                @endif
+                                >
+                            <label class="form-check-label" for="technology-{{ $technology->id }}">
+                                {{ $technology->title }}
+                            </label>
+                        </div>
+                    @endforeach
+                </div>
                 <div>
                     <button type="submit" class="btn btn-warning w-100">
                         + Aggiungi
