@@ -30,6 +30,14 @@
                         <div>
                             Type: <strong>{{ $post->type->title }}</strong>
                         </div>
+                        <div>
+                            Technology:
+                            @foreach ($post->technologies as $technology)
+                                <strong>
+                                    - {{ $technology->title }}
+                                </strong>
+                            @endforeach
+                        </div>
                     </p>
                 </div>
             </div>

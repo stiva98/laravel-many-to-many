@@ -18,6 +18,7 @@
                         <th scope="col">Slug</th>
                         <th scope="col">Content</th>
                         <th scope="col">Type</th>
+                        <th scope="col">Technology</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -42,6 +43,11 @@
                             @else
                                 -
                             @endif
+                        </td>
+                        <td>
+                            @foreach($post->technologies as $technology)
+                                <span class="text-warning">- {{ $technology->title }}</span>
+                            @endforeach
                         </td>
                         <td>
                             <a href="{{ route('admin.posts.show', ['post' => $post->id]) }}" class="btn btn-warning me-2">
