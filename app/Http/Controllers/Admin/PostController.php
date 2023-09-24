@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 
 //Models
 use App\Models\Post;
+use App\Models\Technology;
 use App\Models\Type;
 
 class PostController extends Controller
@@ -28,7 +29,9 @@ class PostController extends Controller
     public function create()
     {
         $types = Type::all();
-        return view('admin.posts.create', compact('types'));
+        $technologies = Technology::all();
+
+        return view('admin.posts.create', compact('types', 'technologies'));
     }
 
     /**
@@ -44,6 +47,13 @@ class PostController extends Controller
         $post->content = $formData['content'];
         $post->type_id = $formData['type_id'];
         $post->save();
+
+        if (isset($formData['technologies'])) {
+            foreach ($formData['technologies'] as $technologyId) {
+                                                
+                $post->technologies()->attach($technologyId);
+            }
+        }
 
         return redirect()->route('admin.posts.index');
     }
@@ -78,6 +88,13 @@ class PostController extends Controller
         $post->content = $formData['content'];
         $post->type_id = $formData['type_id'];
         $post->save();
+
+        if (isset($formData['technologies'])) {
+            $post->technologies()->sync($formData['technologies']);
+        }
+        else {
+            $post->technologies()->detach();
+        }
 
         return redirect()->route('admin.posts.show', ['post' => $post->id]);
     }
