@@ -55,7 +55,7 @@ class TechnologyController extends Controller
      */
     public function edit(Technology $technology)
     {
-        //
+        return view('admin.technologies.edit', compact('technology'));
     }
 
     /**
@@ -63,7 +63,13 @@ class TechnologyController extends Controller
      */
     public function update(UpdateTechnologyRequest $request, Technology $technology)
     {
-        //
+        $formData = $request->all();
+
+        $technology->title = $formData['title'];
+        $technology->content = $formData['content'];
+        $technology->save();
+
+        return redirect()->route('admin.technologies.index');
     }
 
     /**
