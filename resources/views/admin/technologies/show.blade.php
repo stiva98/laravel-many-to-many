@@ -10,7 +10,7 @@
             <h1>
                 {{ $technology ->title }}
             </h1>
-            <a href="{{ route('admin.types.index') }}">
+            <a href="{{ route('admin.technologies.index') }}">
                 - Torna indietro
             </a>
         </div>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('page-title', 'Crea il nuovo Type')
+@section('page-title', 'Crea la tua nuova tecnologia')
 
 
 @section('main-content')
@@ -8,13 +8,13 @@
     <div class="row">
         <div class="col">
             <h1>
-                Crea il tuo nuovo Type
+                Crea la tua nuova tecnologia
             </h1>
         </div>
     </div>
     <div class="row">
         <div class="col-12">
-            <form action="{{ route('admin.types.store') }}" method="POST">
+            <form action="{{ route('admin.technologies.store') }}" method="POST">
                 @csrf
 
                 <div class="mb-3">

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Technology;
-use App\Http\Requests\StoreTechnologyRequest;
-use App\Http\Requests\UpdateTechnologyRequest;
+use App\Http\Requests\Technology\StoreTechnologyRequest;
+use App\Http\Requests\Technology\UpdateTechnologyRequest;
 use App\Http\Controllers\Controller;
 
 class TechnologyController extends Controller
@@ -24,7 +24,7 @@ class TechnologyController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.technologies.create');
     }
 
     /**
@@ -32,7 +32,14 @@ class TechnologyController extends Controller
      */
     public function store(StoreTechnologyRequest $request)
     {
-        //
+        $formData = $request->all();
+
+        $technology = new Technology();
+        $technology->title = $formData['title'];
+        $technology->content = $formData['content'];
+        $technology->save();
+
+        return redirect()->route('admin.technologies.index');
     }
 
     /**
