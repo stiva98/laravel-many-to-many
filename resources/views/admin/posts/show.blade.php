@@ -20,6 +20,11 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">{{ $post->title }}</h5>
+                    @if ($post->cover_image)
+                        <div>
+                            <img src="/storage/{{ $post->cover_image }}" alt="{{ $post->title }}">
+                        </div>
+                    @endif
                     <p class="card-text">
                         <div class="text-warning">
                             Slug: <strong>{{ $post->slug }} </strong>
@@ -28,7 +33,11 @@
                             Content: <strong>{{ $post->content }}</strong>
                         </div>
                         <div>
-                            Type: <strong>{{ $post->type->title }}</strong>
+                            @if ($post->type)
+                                Type: <strong>{{ $post->type->title }}</strong>
+                            @else
+                            Type: -
+                            @endif
                         </div>
                         <div>
                             Technology:

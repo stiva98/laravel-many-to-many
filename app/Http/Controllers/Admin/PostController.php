@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\Technology;
 use App\Models\Type;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -40,12 +41,18 @@ class PostController extends Controller
     public function store(StorePostRequest $request)
     {
         $formData = $request->all();
+        $coverImagePath = null;
+
+        if (isset($formData['cover_image'])) {
+            $coverImagePath = Storage::put('uploads/images', $formData['cover_image']);
+        }
 
         $post = new Post();
         $post->title = $formData['title'];
         $post->slug = $formData['slug'];
         $post->content = $formData['content'];
         $post->type_id = $formData['type_id'];
+        $post->cover_image = $coverImagePath;
         $post->save();
 
         if (isset($formData['technologies'])) {
