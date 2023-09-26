@@ -48,6 +48,11 @@
                     <label class="input-group-text" for="cover_image">Carica un'immagine</label>
                     <input type="file" class="form-control" id="cover_image" name="cover_image" accept="image/*"> 
                 </div>
+                @error('cover_image')
+                    <div class="alert alert-danger my-2">
+                        {{ $message }}
+                    </div>
+                @enderror
                 <div class="mb-3">
                     <label for="type_id" class="form-label">Tipo</label>
                     <select class="form-select" id="type_id" name="type_id">
