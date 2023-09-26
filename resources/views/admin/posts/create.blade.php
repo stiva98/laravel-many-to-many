@@ -44,6 +44,10 @@
                         {{ $message }}
                     </div>
                 @enderror
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="cover_image">Carica un'immagine</label>
+                    <input type="file" class="form-control" id="cover_image" name="cover_image" enctype="multipart/form-data" accept="image/*"> 
+                  </div>
                 <div class="mb-3">
                     <label for="type_id" class="form-label">Tipo</label>
                     <select class="form-select" id="type_id" name="type_id">

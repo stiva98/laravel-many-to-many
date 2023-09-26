@@ -27,6 +27,7 @@ class UpdatePostRequest extends FormRequest
             'title' => 'required|max:64',
             'slug' => 'required|max:64',
             'content' => 'nullable',
+            'cover_image' => 'nullable|image|max:4096',
         ];
     }
 
