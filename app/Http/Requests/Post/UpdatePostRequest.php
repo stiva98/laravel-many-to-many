@@ -28,6 +28,7 @@ class UpdatePostRequest extends FormRequest
             'slug' => 'required|max:64',
             'content' => 'nullable',
             'cover_image' => 'nullable|image|max:4096',
+            'remove_cover_image' => 'nullable|boolean'
         ];
     }
 
@@ -38,6 +39,8 @@ class UpdatePostRequest extends FormRequest
             'title.max' => 'Inserire il titolo con massimo 64 caratteri!',
             'slug.required' => 'Inserire lo slug è obbligatorio!',
             'slug.max' => 'Inserire lo slug con massimo 64 caratteri!',
+            'cover_image.image' => 'Inserire un file di tipo immagine!',
+            'cover_image.max' => 'Inserire un file di tipo immagine di max 4 KB!'
         ];
     }
 }

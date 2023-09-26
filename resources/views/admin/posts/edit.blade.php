@@ -14,7 +14,7 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <form action="{{ route('admin.posts.update', ['post' => $post ->id]) }}" method="POST">
+            <form action="{{ route('admin.posts.update', ['post' => $post ->id]) }}" enctype="multipart/form-data" method="POST">
                 @csrf
                 @method('PUT')
 
@@ -45,6 +45,21 @@
                         {{ $message }}
                     </div>
                 @enderror
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="cover_image">Carica un'immagine</label>
+                    <input type="file" class="form-control" id="cover_image" name="cover_image" accept="image/*"> 
+                </div>
+                @error('cover_image')
+                    <div class="alert alert-danger my-2">
+                        {{ $message }}
+                    </div>
+                @enderror
+                <div class="form-check">
+                    <label class="form-check-label" for="remove_cover_image">
+                        Rimuovi l'immagine
+                    </label>
+                    <input class="form-check-input" type="checkbox" id="remove_cover_image" name="remove_cover_image" value="1">
+                </div>
                 <div class="mb-3">
                     <label for="type_id" class="form-label">Tipo</label>
                     <select class="form-select" id="type_id" name="type_id">

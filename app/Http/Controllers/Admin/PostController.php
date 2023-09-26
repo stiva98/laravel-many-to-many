@@ -51,8 +51,8 @@ class PostController extends Controller
         $post->title = $formData['title'];
         $post->slug = $formData['slug'];
         $post->content = $formData['content'];
-        $post->type_id = $formData['type_id'];
         $post->cover_image = $coverImagePath;
+        $post->type_id = $formData['type_id'];
         $post->save();
 
         if (isset($formData['technologies'])) {
@@ -91,10 +91,26 @@ class PostController extends Controller
     public function update(UpdatePostRequest $request, Post $post)
     {
         $formData = $request->all();
+        $coverImagePath = $post->cover_image;
+        if (isset($formData['cover_image'])) {
+            if ($post->cover_image) {
+                Storage::delete($post->cover_image);
+            }
+
+            $coverImagePath = Storage::put('uploads/images', $formData['cover_image']);
+        }
+        else if (isset($formData['remove_cover_image'])) {
+            if ($post->cover_image) {
+                Storage::delete($post->cover_image);
+            }
+
+            $coverImagePath = null;
+        }
 
         $post->title = $formData['title'];
         $post->slug = $formData['slug'];
         $post->content = $formData['content'];
+        $post->cover_image = $coverImagePath;
         $post->type_id = $formData['type_id'];
         $post->save();
 
